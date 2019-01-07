@@ -42,7 +42,6 @@ for video_file in data:
     output_string = ''.join(output_char_list)
     if success_string in output_string:
         video_conversion_success = True
-    video_conversion_success = True
     if video_conversion_success:
         print print_prefix + 'HandBrake Video Processing Appears to have completed Successfully for file: %s' % video_file['filename']
         # Now that the file has been successfully processed remove the original file
