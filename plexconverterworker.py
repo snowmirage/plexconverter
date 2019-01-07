@@ -54,6 +54,6 @@ for video_file in data:
         print print_prefix + 'Original File Size: %s New File Size: %s' % (video_file['size'], os.path.getsize(video_file['filename']))
 
     else:
-        print print_prefix + 'HandBrake Video Process Appears to have failed for file: %s' % video_file['file_name']
+        print print_prefix + 'HandBrake Video Process Appears to have failed for file: %s' % video_file['filename']
         os.remove(temp_output_path)
     raw_input('Enter to go to next file')
