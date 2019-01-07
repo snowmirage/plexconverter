@@ -5,6 +5,12 @@ import json
 import subprocess
 import sys
 from shutil import copyfile
+import argparse
+
+arg_parser = argparse.ArgumentParser(description='soemthing')
+arg_parser.add_argument('worker_file_full_path', help='full path to a worker file from plexconverter-manager.py')
+
+args = arg_parser.parse_args()
 
 # sudo add-apt-repository ppa:stebbins/handbrake-releases
 # sudo apt-get update
@@ -12,7 +18,7 @@ from shutil import copyfile
 
 
 print_prefix = '<plexconverterworker.py>     '
-worker_file_full_path = '/media/unraid-media/plexconverter-workingdir/worker-1/worker-1-list.txt'
+worker_file_full_path = args.worker_file_full_path
 
 # Read our list of videos to process from our file
 with open(worker_file_full_path) as json_file:
@@ -45,10 +51,8 @@ for video_file in data:
     if video_conversion_success:
         print print_prefix + 'HandBrake Video Processing Appears to have completed Successfully for file: %s' % video_file['filename']
         # Now that the file has been successfully processed remove the original file
-        raw_input('about to remove original')
         os.remove(video_file['filename'])
         # Now copy the new file to the original location
-        raw_input('about to copy new')
         copyfile(temp_output_path, video_file['filename'])
 
         print print_prefix + 'Original File Size: %s New File Size: %s' % (video_file['size'], os.path.getsize(video_file['filename']))
@@ -56,4 +60,3 @@ for video_file in data:
     else:
         print print_prefix + 'HandBrake Video Process Appears to have failed for file: %s' % video_file['filename']
         os.remove(temp_output_path)
-    raw_input('Enter to go to next file')
