@@ -51,7 +51,10 @@ for video_file in data:
     if video_conversion_success:
         print print_prefix + 'HandBrake Video Processing Appears to have completed Successfully for file: %s' % video_file['filename']
         # Now that the file has been successfully processed remove the original file
-        os.remove(video_file['filename'])
+        try:
+            os.remove(video_file['filename'])
+        except OSError:
+            pass
         # Now copy the new file to the original location
         copyfile(temp_output_path, video_file['filename'])
 
@@ -59,4 +62,7 @@ for video_file in data:
 
     else:
         print print_prefix + 'HandBrake Video Process Appears to have failed for file: %s' % video_file['filename']
-        os.remove(temp_output_path)
+        try:
+            os.remove(temp_output_path)
+        except OSError:
+            pass
