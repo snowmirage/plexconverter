@@ -3,8 +3,6 @@ from pprint import pprint as pp
 import json
 import os
 
-path = '/media/unraid-media/Movies/Pay It Forward (2000)/Pay It Forward 2000 WEBDL-1080p.mkv'
-path = '/media/unraid-media/Movies/The Equalizer 2 (2018)/The Equalizer 2 2018 Remux-2160p.mkv'
 print_prefix = '<plextool.py>     '
 
 
@@ -236,7 +234,7 @@ print 'Videos over area rate limit and not h265 and over 3GB: %s' % num_videos_n
 # Videos over area rate limit and not h265: 11279
 
 # Take your list1
-num_videos_per_work_file = 100
+num_videos_per_work_file = 5
 current_video_count = 0
 current_video_list = []
 work_file_number = 1
