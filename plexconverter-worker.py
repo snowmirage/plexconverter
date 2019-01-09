@@ -123,8 +123,8 @@ for video_file in data:
         new_video_meta_data = get_video_meta_data(temp_output_path)
         print print_prefix + 'Stats of new file'
         pp(new_video_meta_data)
-        if video_file['duration'] == new_video_meta_data['duration']:
-            print print_prefix + 'The duration of the new file appears to match the old success!'
+        if int(video_file['duration']) == int(new_video_meta_data['duration']):
+            print print_prefix + 'The second duration of the new file appears to match the old success!'
             video_conversion_success = True
 
     if video_conversion_success:
@@ -145,11 +145,12 @@ for video_file in data:
             os.remove(video_file['filename'])
         except OSError:
             pass
-        
+
         print print_prefix + 'Original File Size: %s New File Size: %s' % (video_file['size'], os.path.getsize(video_file['filename']))
 
     else:
         print print_prefix + 'HandBrake Video Process Appears to have failed for file: %s' % video_file['filename']
+        print print_prefix + 'Removing the temp video file but leaving the original in place'
         try:
             os.remove(temp_output_path)
         except OSError:
