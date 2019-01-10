@@ -142,7 +142,7 @@ for video_file in data:
         # Now remove the temp file
         print print_prefix + 'Removing the temp video file: %s' % temp_output_path
         try:
-            os.remove(video_file['filename'])
+            os.remove(temp_output_path)
         except OSError:
             pass
 
