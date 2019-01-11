@@ -123,8 +123,8 @@ for video_file in data:
         new_video_meta_data = get_video_meta_data(temp_output_path)
         print print_prefix + 'Stats of new file'
         pp(new_video_meta_data)
-        if int(float(video_file['duration'])) == int(float(new_video_meta_data['duration'])):
-            print print_prefix + 'The second duration of the new file appears to match the old success!'
+        if abs(int(float(video_file['duration'])) - int(float(new_video_meta_data['duration']))) < 3:
+            print print_prefix + 'The second duration of the new file appears to be within 3 seconds of the old success!'
             video_conversion_success = True
 
     if video_conversion_success:
