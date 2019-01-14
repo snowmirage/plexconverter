@@ -260,3 +260,5 @@ if len(current_video_list) > 0:
 
     with open('/media/unraid-media/plexconverter-workingdir/worker-%s/worker-%s-list.txt' % (work_file_number, work_file_number), 'w') as fout:
         json.dump(current_video_list, fout)
+
+os.system('chmod -R ugo+rwx /media/unraid-media/plexconverter-workingdir/*')
